@@ -1,12 +1,13 @@
 import React, {useEffect, useState} from 'react';
 import FullScreen from '../FullScreen';
-import {Box, Text, HStack, VStack} from "@chakra-ui/react";
+import {Box, Text} from "@chakra-ui/react";
 import img from '../images/IMG_5091.jpg';
 import img2 from '../images/CatLogoNoWords.png'
 import img3 from '../images/IMG_5095.JPG'
 
 const Merch = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  console.log(isMobile);
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth >= 768);

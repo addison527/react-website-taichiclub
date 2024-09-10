@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import FullScreen from '../FullScreen';
 import {VStack, Box, Text} from "@chakra-ui/react";
 

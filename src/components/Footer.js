@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from 'react-router-dom'
 import {Box, Flex, Text, HStack} from "@chakra-ui/react";
 import seal from './images/seal.png';
 import emailicon from './images/mail-open.svg';
