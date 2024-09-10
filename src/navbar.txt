@@ -1,0 +1,725 @@
+August 13 2024
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+// import logo from './images/CatLogoNoWords.png';
+// import { Box, HStack, VStack, Text } from '@chakra-ui/react';
+// import Menu from './Menu';
+
+// const menuData = [
+//   {
+//     title: 'Information',
+//     submenu: [
+//       { title: 'Class Schedule', url: '/class-schedule' },
+//       { title: 'Follow Along Videos', url: '/follow-along' },
+//       { title: 'Demonstrations', url: '/demonstrations' },
+//     ],
+//   },
+// ];
+
+// const menuData1 = [
+//   {
+//     title: 'About',
+//     submenu: [
+//       { title: 'About', url: '/about' },
+//       { title: 'Merch', url: '/merch' },
+//       { title: 'Tai-Chi Philosophy', url: '/blogs' },
+//     ],
+//   },
+// ];
+
+// const Navbar = () => {
+//   // const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   // const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+//   const [isAboutMenuOpen, setIsAboutMenuOpen] = useState(false);
+//   const [isInfoMenuOpen, setIsInfoMenuOpen] = useState(false);
+
+//   const toggleAboutMenu = () => {
+//     setIsAboutMenuOpen(!isAboutMenuOpen);
+//     setIsInfoMenuOpen(false); // Close Information menu if About menu is opened
+//   };
+
+//   const toggleInfoMenu = () => {
+//     setIsInfoMenuOpen(!isInfoMenuOpen);
+//     setIsAboutMenuOpen(false); // Close About menu if Information menu is opened
+//   };
+//   const [isMobile, setIsMobile] = useState(false);
+//   useEffect(() => {
+//     const updateScreenSize = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+//     updateScreenSize();
+//     window.addEventListener('resize', updateScreenSize);
+//     return () => window.removeEventListener('resize', updateScreenSize);
+//   }, []);
+
+//   const [hoveredLink, setHoveredLink] = useState(null);
+//   const handleMouseOver = (linkId) => {
+//     setHoveredLink(linkId);
+//   };
+
+//   const handleMouseOut = () => {
+//     setHoveredLink(null);
+//   };
+
+//   return (
+//     <Box
+//       flex="1"
+//       zIndex={1000}
+//       position="fixed"
+//       top={0}
+//       left={0}
+//       right={0}
+//       backgroundColor="#95a2bc"
+//     >
+//       <Box color="#CED5DF" maxWidth="1280px" height="85px" margin="0 auto">
+//         <HStack px={16} py={4} justifyContent="space-between" alignItems="center" >
+//           <nav alignItems = "center">
+//             <HStack spacing={4} style={{ margin: 0, padding: 0 }} >
+//               <Link to="/" onClick={() => {setIsAboutMenuOpen(false); setIsInfoMenuOpen(false);}}>
+//                 <img src={logo} alt="logo" style={{ width: '50px', height: 'auto' }} />
+//               </Link>
+//               <Text>
+//                 <h1 style={{ color: '#fff', marginLeft: '0px', fontSize : '35px', margin: '0', padding: '0' }}>The Tai-Chi Club</h1>
+//               </Text>
+//             </HStack>
+//           </nav>
+//           <nav>
+//             {isMobile ? (
+//               <button style={{ padding: '8px',color: '#ebeff3', background: 'none', border: '1px solid', borderRadius: '3px',cursor: 'pointer', backgroundColor: hoveredLink === 'button' ? '#6e86bb' : 'transparent'}}
+//               onClick={toggleAboutMenu} //FIX
+//               onMouseOver={() => handleMouseOver('button')}
+//               onMouseOut={() =>handleMouseOut()} >
+//               ☰
+//               </button>
+//             ) : (
+//               <HStack spacing={20} style ={{fontSize: '18px', fontFamily: 'Times New Roman'}}>
+//                 <a
+//                   href="/"
+//                   onMouseOver={() => handleMouseOver('home')}
+//                   onMouseOut={handleMouseOut}
+//                   style={{
+//                     color: hoveredLink === 'home' ? '#0D3759' : '#fff',
+//                     textDecoration: 'none',
+//                     background: 'none',
+//                   }} >
+//                   Home
+//                 </a>
+//                 {/* <a
+//                   href="/about"
+//                   onMouseOver={() => handleMouseOver('about')}
+//                   onMouseOut={handleMouseOut}
+//                   style={{
+//                     color: hoveredLink === 'about' ? '#0D3759' : '#fff',
+//                     textDecoration: 'none',
+//                     background: 'none',
+//                   }}
+//                 >
+//                   About
+//                 </a> */}
+//                 <div style={{ position: 'relative' }}>
+//                   {menuData1.map((menu, index) =>
+//                     menu.title === 'About' ? (
+//                       <div key={index} style={{ position: 'relative' }}>
+//                         <button
+//                           onMouseOver={() => handleMouseOver('about')}
+//                           onMouseOut={handleMouseOut}
+//                           onClick={toggleAboutMenu}
+//                           style={{
+//                             color: hoveredLink === 'about' ? '#0D3759' : '#fff',
+//                             background: 'none',
+//                             border: 'none',
+//                             cursor: 'pointer',
+//                             textDecoration: 'none',
+//                             fontSize: '19px',
+//                             fontFamily: 'Times New Roman'
+//                           }}
+//                         >
+//                           About
+//                         </button>
+//                         {isAboutMenuOpen && (
+//                           <VStack
+//                             spacing={2}
+//                             style={{
+//                               position: 'absolute',
+//                               top: '100%',
+//                               left: 0,
+//                               backgroundColor: '#fff',
+//                               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+//                               padding: '10px',
+//                               borderRadius: '4px',
+//                             }}
+//                           >
+//                             {menu.submenu.map((item, i) => (
+//                               <Link
+//                                 key={i}
+//                                 to={item.url}
+//                                 onMouseOver={() => handleMouseOver(item.title)}
+//                                 onMouseOut={handleMouseOut}
+//                                 style={{
+//                                   color: hoveredLink === item.title ? '#0D3759' : '#95a2bc',
+//                                   textDecoration: 'none',
+//                                   padding: '8px 0',
+//                                   borderBottom: '1px solid #0D3759',
+//                                   width: '150px',
+//                                 }} >
+//                                 {item.title}
+//                               </Link>
+//                             ))}
+//                           </VStack>
+//                         )}
+//                       </div>
+//                     ) : null
+//                   )}
+//                 </div>
+//                 <div style={{ position: 'relative' }}>
+//                   {menuData.map((menu, index) =>
+//                     menu.title === 'Information' ? (
+//                       <div key={index} style={{ position: 'relative' }}>
+//                         <button
+//                           onMouseOver={() => handleMouseOver('information')}
+//                           onMouseOut={handleMouseOut}
+//                           onClick={toggleInfoMenu}
+//                           style={{
+//                             color: hoveredLink === 'information' ? '#0D3759' : '#fff',
+//                             background: 'none',
+//                             border: 'none',
+//                             cursor: 'pointer',
+//                             textDecoration: 'none',
+//                             fontSize: '19px',
+//                             fontFamily: 'Times New Roman'
+//                           }}
+//                         >
+//                           Information
+//                         </button>
+//                         {isInfoMenuOpen && (
+//                           <VStack
+//                             spacing={2}
+//                             style={{
+//                               position: 'absolute',
+//                               top: '100%',
+//                               left: 0,
+//                               backgroundColor: '#fff',
+//                               boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+//                               padding: '10px',
+//                               borderRadius: '4px',
+//                             }}
+//                           >
+//                             {menu.submenu.map((item, i) => (
+//                               <Link
+//                                 key={i}
+//                                 to={item.url}
+//                                 onMouseOver={() => handleMouseOver(item.title)}
+//                                 onMouseOut={handleMouseOut}
+//                                 style={{
+//                                   color: hoveredLink === item.title ? '#0D3759' : '#95a2bc',
+//                                   textDecoration: 'none',
+//                                   padding: '8px 0',
+//                                   borderBottom: '1px solid #0D3759',
+//                                   width: '150px',
+//                                 }} >
+//                                 {item.title}
+//                               </Link>
+//                             ))}
+//                           </VStack>
+//                         )}
+//                       </div>
+//                     ) : null
+//                   )}
+//                 </div>
+//                 <a href="/contact"
+//                   onMouseOver={() => handleMouseOver('contact')}
+//                   onMouseOut={handleMouseOut}
+//                   style={{
+//                     color: hoveredLink === 'contact' ? '#0D3759' : '#fff',
+//                     textDecoration: 'none',
+//                     background: 'none',
+//                   }}>
+//                   Contact
+//                 </a>
+//               </HStack>
+//             )}
+//           </nav>
+//         </HStack>
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default Navbar;
+---------------------
+August 10
+
+
+import React, {useState, useEffect} from 'react' //tracks screen width
+import { Link } from 'react-router-dom'
+import logo from './images/CatLogoNoWords.png';
+import { Button } from './Button';
+import { Box, HStack, VStack } from "@chakra-ui/react";
+import Menu from './Menu';
+
+const menuData = [
+  {
+    title: 'Information',
+    submenu: [
+      { title: 'Class Schedule', url: '/class-schedule' },
+      { title: 'Follow Along Videos', url: '/follow-along' },
+      { title: 'Resources & Demonstrations', url: '/demonstrations' },
+    ],
+  },
+];
+
+const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+
+  const [button, setButton] = useState(true);
+  const showButton = () => {
+    if (window.innerWidth <= 960){
+      setButton(false);
+    } else {setButton(true)};
+  };
+
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect (() => {
+    showButton();
+    const updateScreenSize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    }
+    updateScreenSize();
+    window.addEventListener('resize',showButton);
+    return () => window.removeEventListener('resize', updateScreenSize);
+  }, []);
+  
+  const handleClick = (anchor) => () => {
+    const id = `${anchor}`;
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
+  const closeMobileMenu = () => setClick(false);
+  const [click, setClick] = useState(false);
+  const [hoveredLink, setHoveredLink] = useState(null);
+  const handleMouseOver = (linkId) => {setHoveredLink(linkId); };
+  const handleMouseOut = () => { setHoveredLink(null); };
+
+  return (
+    <Box flex = "1" zIndex={1000} position="fixed" top={0} left={0} right={0} translateY={0} transitionProperty="transform" transitionDuration=".3s" transitionTimingFunction="ease-in-out" backgroundColor="#CED5DF">
+      <Box color = "#CED5DF" maxWidth = "1280px" height = "85px" margin = "0 auto">
+        <HStack px={16} py={4} justifyContent="space-between" alignItems="center">
+          <nav>
+            <HStack spacing = {4}>
+              <Link to="/"className='navbar-logo' onClick = {closeMobileMenu}>
+                <img src={logo} alt="logo" style = {{width: '50px', height: 'auto'}}></img>
+              </Link>
+              <HStack spacing = {20}>
+                <h1 style = {{color: "#fff", marginLeft: '0px'}}>The TaiChi Club</h1>
+              </HStack>
+            </HStack>
+          </nav>
+          {/* <nav>
+            <div>
+              {isMobile ? ( <Button buttonStyle='btn--outline' style = {{padding: '10px', color: '#0D3759'}}>Services</Button>)
+            :
+            (<HStack spacing = {20}>
+              <a href="/" onClick={() => handleClick('Home')} onMouseOver = {() => handleMouseOver('home')} 
+                  onMouseOut = {handleMouseOut}  style = {{color: hoveredLink === 'home'? "#0D3759": "#fff", textDecoration: "none"}}>Home</a>
+              <a href="/about" onClick={() => handleClick('About')} onMouseOver = {() => handleMouseOver('about')} 
+                  onMouseOut = {handleMouseOut}  style = {{color: hoveredLink === 'about'? "#0D3759": "#fff", textDecoration: "none"}}>About</a>
+              {menuData.map((menu, index) => (
+                menu.title === "Information" ? <Menu items = {menu} key={index}/> : null
+              ))}
+              <a href="/contact" onClick={() => handleClick('Contact')} onMouseOver = {() => handleMouseOver('contact')} 
+                  onMouseOut = {handleMouseOut} style = {{color: hoveredLink === 'contact'? "#0D3759": "#fff", textDecoration: "none"}}>Contact</a>
+              </HStack>)}
+            </div>
+          </nav> */}
+         <nav>
+      <div>
+        {isMobile ? (
+          <Button buttonStyle='btn--outline' style={{ padding: '10px', color: '#0D3759' }}>
+            Services
+          </Button>
+        ) : (
+          <HStack spacing={20}>
+            <a
+              href="/"
+              onClick={() => handleClick('Home')}
+              onMouseOver={() => handleMouseOver('home')}
+              onMouseOut={handleMouseOut}
+              style={{ color: hoveredLink === 'home' ? "#0D3759" : "#fff", textDecoration: "none" }}
+            >
+              Home
+            </a>
+            <a
+              href="/about"
+              onClick={() => handleClick('About')}
+              onMouseOver={() => handleMouseOver('about')}
+              onMouseOut={handleMouseOut}
+              style={{ color: hoveredLink === 'about' ? "#0D3759" : "#fff", textDecoration: "none" }}
+            >
+              About
+            </a>
+            <div style={{ position: 'relative' }}>
+
+
+              {/* <Menu items={menuData[0]} /> */}
+
+              {menuData.map((menu, index) => (
+              menu.title === "Information" ? (
+                <div key={index} style={{ position: 'relative' }}>
+                  <Button
+                    onMouseOver={() => handleMouseOver('information')}
+                    onMouseOut={handleMouseOut}
+                    style={{ color: hoveredLink === 'information' ? "#0D3759" : "#000", textDecoration: "none", background: 'none', border: 'none' }}
+                    onClick={toggleMenu}
+                  >
+                    Information
+                  </Button>
+                  {isMenuOpen && (
+                    <VStack
+                      spacing={2}
+                      style={{
+                        position: 'absolute',
+                        top: '100%',
+                        left: 0,
+                        backgroundColor: '#fff',
+                        boxShadow: '0px 4px 8px rgba(0, 0, 0, 0.1)',
+                        padding: '10px',
+                        borderRadius: '4px',
+                      }}
+                    >
+                      {menu.submenu.map((item, i) => (
+                        <Link
+                          key={i}
+                          to={item.url}
+                          onMouseOver={() => handleMouseOver(item.title)}
+                          onMouseOut={handleMouseOut}
+                          style={{ color: hoveredLink === item.title ? "#0D3759" : "#000", textDecoration: "none" }}
+                        >
+                          {item.title}
+                        </Link>
+                      ))}
+                    </VStack>
+                  )}
+                </div>
+              ) : null ))}
+            </div>
+            <a
+              href="/contact"
+              onClick={() => handleClick('Contact')}
+              onMouseOver={() => handleMouseOver('contact')}
+              onMouseOut={handleMouseOut}
+              style={{ color: hoveredLink === 'contact' ? "#0D3759" : "#fff", textDecoration: "none" }}
+            >
+              Contact
+            </a>
+          </HStack>
+        )}
+      </div>
+    </nav>
+        </HStack>
+      </Box>
+    </Box>
+  )
+}
+export default Navbar;
+
+-----------------------------------
+// import React, { useState, useEffect } from 'react';
+// import { Link } from 'react-router-dom';
+// import logo from './images/CatLogoNoWords.png';
+// import { Button } from './Button';
+// import { Box, HStack, VStack } from "@chakra-ui/react";
+// import './Navbar.css'; // Import the CSS file
+
+// const menuData = [
+//   {
+//     title: 'Information',
+//     submenu: [
+//       { title: 'Class Schedule', url: '/class-schedule' },
+//       { title: 'Follow Along Videos', url: '/follow-along' },
+//       { title: 'Resources & Demonstrations', url: '/demonstrations' },
+//     ],
+//   },
+// ];
+
+// const Navbar = () => {
+//   const [isMenuOpen, setIsMenuOpen] = useState(false);
+//   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+//   const [hoveredLink, setHoveredLink] = useState(null);
+
+//   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+//   useEffect(() => {
+//     const handleResize = () => {
+//       setIsMobile(window.innerWidth <= 768);
+//     };
+
+//     window.addEventListener('resize', handleResize);
+//     return () => window.removeEventListener('resize', handleResize);
+//   }, []);
+
+//   const handleMouseOver = (linkId) => setHoveredLink(linkId);
+//   const handleMouseOut = () => setHoveredLink(null);
+//   const closeMobileMenu = () => setIsMenuOpen(false);
+
+//   return (
+//     <Box className="navbar-container">
+//       <Box className="navbar-content">
+//         <HStack px={16} py={4} justifyContent="space-between" alignItems="center">
+//           <nav>
+//             <HStack spacing={4}>
+//               <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+//                 <img src={logo} alt="logo" className="logo-image" />
+//               </Link>
+//               <HStack spacing={20}>
+//                 <h1 className="navbar-title">The TaiChi Club</h1>
+//               </HStack>
+//             </HStack>
+//           </nav>
+//           <nav>
+//             {isMobile ? (
+//               <Button buttonStyle='btn--outline' className="mobile-button">
+//                 Services
+//               </Button>
+//             ) : (
+//               <HStack spacing={20}>
+//                 <a
+//                   href="/"
+//                   onMouseOver={() => handleMouseOver('home')}
+//                   onMouseOut={handleMouseOut}
+//                   className={`navbar-link ${hoveredLink === 'home' ? 'hovered' : ''}`}
+//                 >
+//                   Home
+//                 </a>
+//                 <a
+//                   href="/about"
+//                   onMouseOver={() => handleMouseOver('about')}
+//                   onMouseOut={handleMouseOut}
+//                   className={`navbar-link ${hoveredLink === 'about' ? 'hovered' : ''}`}
+//                 >
+//                   About
+//                 </a>
+//                 <div className="menu-container" style = {{color: 'transparent', backgroundColor: 'transparent'}}>
+//                   {menuData.map((menu, index) => (
+//                     menu.title === "Information" && (
+//                       <div key={index} className="dropdown">
+//                         <Button
+//                           onMouseOver={() => handleMouseOver('information')}
+//                           onMouseOut={handleMouseOut}
+//                           className={`dropdown-button ${hoveredLink === 'information' ? 'hovered' : ''}`}
+//                           onClick={toggleMenu}
+//                           style={{ background: 'transparent', border: 'none', color: '#000' }}
+//                         >
+//                           Information
+//                         </Button>
+//                         {isMenuOpen && (
+//                           <VStack
+//                             spacing={2}
+//                             className="dropdown-menu"
+//                           >
+//                             {menu.submenu.map((item, i) => (
+//                               <Link
+//                                 key={i}
+//                                 to={item.url}
+//                                 onMouseOver={() => handleMouseOver(item.title)}
+//                                 onMouseOut={handleMouseOut}
+//                                 className={`dropdown-link ${hoveredLink === item.title ? 'hovered' : ''}`}
+//                               >
+//                                 {item.title}
+//                               </Link>
+//                             ))}
+//                           </VStack>
+//                         )}
+//                       </div>
+//                     )
+//                   ))}
+//                 </div>
+//                 <a
+//                   href="/contact"
+//                   onMouseOver={() => handleMouseOver('contact')}
+//                   onMouseOut={handleMouseOut}
+//                   className={`navbar-link ${hoveredLink === 'contact' ? 'hovered' : ''}`}
+//                 >
+//                   Contact
+//                 </a>
+//               </HStack>
+//             )}
+//           </nav>
+//         </HStack>
+//       </Box>
+//     </Box>
+//   );
+// };
+
+// export default Navbar;
+
+cardimg.css file
+
+/* Card Image Item Container */
+.cardimg__item {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 90%;
+  max-width: 1220px;
+  /* max-Height: 915px; */
+  height: 50vh;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: transparent; 
+  flex-direction: column;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+/* Card Image Container */
+.cardimg__item__pic-wrap {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Aspect ratio 16:9 */
+  overflow: hidden;
+  background-color: #b6c2dc;
+  margin: 0; /*move the image to fit whole card*/
+}
+
+/* Image Styling */
+.cardimg__item__img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin: 0;
+  padding: 0;
+}
+
+/* Card Information Container */
+.cardimg__item__info {
+  padding: 0;
+  text-align: center;
+  background-color: transparent;
+  
+}
+
+/* Card Text Styling */
+.cardimg__item__text {
+  font-size: 1.2rem;
+  color: #0D3759;
+  margin: 0;
+}
+
+import React from 'react';
+
+/*A Full screen card for the about and merch page */
+function CardImg(props) {
+  return (
+    <>
+      <li className='cardimg__item'>
+        <figure className='cardimg__item__pic-wrap' data-category={props.label}>
+            <img className ='cardimg__item__img'
+                alt='Taichi Image'
+                src={props.src}
+            /> 
+        </figure>
+        <div className='cardimg__item__info'>
+            <h5 className='cardimg__item__text'>{props.text}</h5>
+        </div>
+      </li>
+    </>
+  );
+}
+ export default CardImg;
+
+ ____________________________________
+ About.js as of 8/14/2024
+ <Card style = {{cardstyle}}>
+            <img src = {image} alt = "img" style ={{objectPosition: 'center top',maxWidth: '80%', height:'auto', display:'block', margin: '0 auto'}}/>
+            <Text style ={{textAlign:'center'}}>Founder, Jie Gu</Text>
+          </Card>
+          <Text style = {{padding: '0 1rem', marginTop: '0', width: '80%', }} maxWidth={'100%'} textAlign={"center"}>
+              <p padding='0'style={{fontSize : '1.25rem', marginBottom: '0'}}>At the Tai-Chi Club, 
+                our dedication to spreading joy and wellness through group practice is paramount. 
+                Free learning access to this ancient art form is offered biweekly with competition 
+                standards upheld in sessions. Since the club’s inception in Spring 2023, hundreds 
+                have participated the public sessions at different locations. Everyone is welcome 
+                to join and learn or join and help. <br></br><br></br>
+                Let’s join hands and champion our public Tai-Chi initiative: </p>
+              <h2 style ={{fontSize: '1.55rem', marginBottom:'0', margin:'1rem', padding:'0'}}>
+                Embarking on the Tai Chi Journey, diligence we sow <br>
+                </br>Embracing in Yin and Yang’s flow, wisdom gracefully grow <br>
+                </br>Flourishing group connection, friendship ever glow </h2>
+              <p>
+                Since November of 2023, Jie Gu has led a free, hour-long tai chi class twice a month 
+                at the Main Library at Goodwood. Jie emigrated from Hubei, a province in North China, 
+                about 20 years ago. After settling in Baton Rouge and earning a PhD in engineering at LSU, 
+                she began a successful career as a civil engineer and contributes her success to the 
+                opportunities aff orded her in our state and local community and its kind, helpful citizens. 
+                She has a teenage son, Cameron, who also practices tai chi and sometimes leads the Library 
+                sessions. Now, as her students near the one-year anniversary mark of exploring the yin and 
+                yang of mind-body, we sat down with Jie Gu for a conversation refl ecting on her own journey 
+                with tai chi and how the Library has helped her (and others) achieve their goals. “I started 
+                tai chi in October of 2018,” she smiled; it was a bright, contagious smile, brimming with hope, 
+                clarity, and confi dence that could not be contained. However, Jie was not always recognized 
+                as the athletic type. In China, children are screened for talent and pre-selected to learn 
+                tai chi. Jie was never chosen. Instead, she was selected for an enrichment program in math. 
+                Years later, Jie was feeling fatigued and experiencing low energy levels from an iron 
+                deficiency. This severely impacted her life. “One day, I woke up and said, ‘I want to have 
+                a change.’” She ventured to her local tai chi studio and immediately became obsessed with 
+                its healing benefi ts. It greatly improved her energy levels. She had tried other activities, 
+                like swimming and running, but those didn’t help. “Tai chi is diff erent from other sports, 
+                because there aren’t any high-impact movements. It doesn’t exhaust you at all.” You must 
+                relax and connect mind and body to achieve success in tai chi. With that connection in mind, 
+                Jie wanted to share this newfound “medicine” with her community. And more importantly, 
+                she wanted it to be at no cost. After reaching out to the Library, Jie was able to do 
+                just that. She reports 30-50 class members each session, including lots of regulars who 
+                attend most, if not all, classes. There are folks of all ages, including one woman with 
+                limited mobility who performs all the upper body movements from the safety of a chair. 
+                Even nine months into the program, Jie is still registering new class members
+                The enduring success of these classes has bled over into Jie’s personal life. 
+                “I am on the highest level in this country, maybe in the world!” she exclaimed. 
+                “I am going to compete, and I will prove myself because I am good at learning, and I 
+                practice consistently.” Jie has earned a spot in the 4th World Taijiquan Championship, 
+                taking place in Singapore this August, by placing 1st in two events at the 2024 USAWKF 
+                National Team Trials and 2024 Golden State International Wushu Championships. This is the
+                 equivalent of being chosen for an Olympic team – a remarkable achievement for someone 
+                 who has only trained for a short period in adulthood. When asked about having a natural 
+                 talent, Jie remarked dryly, “No, I have to deny that.” But for someone who freely gives 
+                 so much of herself to her community and uses the Library as the conduit for her knowledge 
+                 and talent, Jie deserves some credit. The East Baton Rouge Parish Library helps people like 
+                 Jie follow and explore their passions and brings the community (young and old) together; 
+                 the Library is an invaluable meeting place where talent/skill can be shared. The Large 
+                 Meeting Room at the Main Library at Goodwood provides state of the art audio and video 
+                 services, versatile seating arrangements, and serene views through vast windows of a 
+                 modern jetting water fountain and live oaks. We hope to see you at the next tai chi class 
+                 ready to move, relax, and reconnect body and mind.
+              </p>
+          </Text>
+---------------------
+BUTTON.JS 8/14/2024
+import React from 'react'; //shortcut: imr
+import './Button.css';
+import { Link } from 'react-router-dom';
+
+const STYLES = ['btn--primary', 'btn--outline'];
+const SIZES = ['btn--medium', 'btn--large'];
+
+export const Button = ({children, type, onClick, buttonStyle, buttonSize}) => 
+    {const checkButtonStyle = STYLES.includes(buttonStyle) ? buttonStyle : /*default:*/ STYLES[0];
+       const checkButtonSize = SIZES.includes(buttonSize) ? buttonSize : SIZES[0];
+       return (
+        <Link to = '/' className = 'btn-mobile'>
+            <button className = {`btn ${checkButtonStyle} ${checkButtonSize}`} onClick = {onClick} type = {type} style = {{fontFamily: 'Times New Roman'}}>
+                {children}
+            </button>
+        </Link>
+       )
+}
+________________________________________
