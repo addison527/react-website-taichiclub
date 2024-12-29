@@ -1,6 +1,7 @@
 ## Tai Chi Club React Project
 Addison Man
-This 
+
+Find the Baton Rouge Library Tai Chi Class calendar, watch and follow demonstration videos of each movement of the 24 movement combination. Read the blog about the art of yin and yang. Find how to get a free tai chi club T-shirt (attend all 12 classes!). 
 
 ## Built with
 React.js, Boostrap
@@ -46,7 +47,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 
 1. Clone the repo
    ```sh
-   git clone [repo ssh or html url]
+   git clone https://github.com/addison527/react-website-taichiclub.git
    ```
 2. Install NPM packages
    ```sh
