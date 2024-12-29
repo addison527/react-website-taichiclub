@@ -4,7 +4,6 @@ This
 
 ## Built with
 React.js, Boostrap
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Getting started / Available Scripts
 
@@ -65,9 +64,7 @@ You don't have to ever use `eject`. The curated feature set is suitable for smal
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
+Find the Baton Rouge Library Tai Chi Class calendar, watch and follow demonstration videos of each movement of the 24 movement combination. Read the blog about the art of yin and yang. Find how to get a free tai chi club T-shirt (attend all 12 classes!). 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -83,6 +80,6 @@ Vicky Villeta
 
 Addison Man - addisonbliss.man@gmail.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/addison527/react-website-taichiclub](https://github.com/addison527/react-website-taichiclub/tree/master)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
